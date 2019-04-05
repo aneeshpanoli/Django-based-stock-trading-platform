@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" href='{% static 'css/index.css' %}' />
+<table id="watchlistTable">
+
+{% for x in forex_dict %}
+  <tr>
+    <td><form name="twsLauncher" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ forloop.counter0 }} name="forexRow">
+      <input type="hidden" value={{ x.ticker }} name="forexTicker">
+      <input class="button close-button" title="Remove from list and stop download" name='forexClose' value='&#x23af' type="submit">
+    </form></td>
+    <td>{{ x.ticker }}</td>
+    <td><form name="twsLauncher" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ x.ticker }} name="forexQuote">
+        {{ dwnld_btn|safe }}
+    </form></td>
+    <td>{{x.close }}</td>
+    <td><form name="getQuotes" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ x.ticker }} name="addtolivetrade">
+      <input title="Add to live trade" class="button dwnld-btn" value='&#43' type="submit">
+    </form></td><td>{{ x.atr }}</td>
+  </tr>
+  {% endfor %}
+  </table>

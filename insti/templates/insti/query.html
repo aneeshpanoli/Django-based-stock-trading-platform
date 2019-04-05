@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="{% static 'img/favicon/favicon.ico'%}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico'%}" type="image/x-icon" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href='{% static 'css/index.css' %}' />
+  <title>Stock Trading Command Center</title>
+
+</head>
+<body background="{% static 'media/img/jarvis.jpg'%}">
+  <div id="container">
+
+    <a href="http://127.0.0.1:8000/cc"><h1> Stock Trading Command Center </h1></a>
+  </header> </div>
+
+ <!-- this is the form -->
+
+ <div id="innerhori1">
+
+ <div id="boxLeft" class='pmed-srch-box'>
+   <form method='POST' action='.'> {% csrf_token %} {{ form }}
+     <input class="hbutton" name='instiSearch' type='hidden' value='instisrch'/>
+     <input class="button add-list-btn" name="instiSearch" type='submit' value='Search' maxlength='8'/>
+
+          <div class="tooltip button" > ?
+  <span class="tooltiptext">Enter 'summary13F' to see the summary</span></div>
+          <!-- <div class="g-recaptcha" data-sitekey="6Le0iBUUAAAAACjXRNYBTwAkpVAzo5orIq3zrtHO"></div> -->
+    </form>
+
+</div>
+</div>
+
+<div >
+<h2></h2>
+</div>
+<div id="innerhori3">
+
+  <footer id="bottomfooter"><h5> <a href="http://www.pyzyme.com/disclaimer">Disclaimer</a></h5></footer>
+  <footer id="bottomfooter2"><h5>Pyzyme.com © 2017</p><p>By continuing to use this site you acknowledge that you have read and understood the disclaimer!</h5></footer>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="{% static 'img/favicon/favicon.ico'%}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico'%}" type="image/x-icon" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href='{% static 'css/index.css' %}' />
+  <title>Stock Trading Command Center</title>
+
+</head>
+<body background="{% static 'img/jarvis.jpg'%}">
+  <div class="container">
+    <div  class="mainheaderDiv"><header>
+      <a href=""><h1> Stock Trading Command Center </h1></a>
+    </header> </div>
+    <!-- ++++++++++++++++++++++++++++contend Div++++++++++++++++++++++++++++++++++++ -->
+    <div class="contentDiv">
+      <!-- ++++++++++++++++++++++++++++#1++++++++++++++++++++++++++++++++++++ -->
+      <div class="vertical-box-div">
+        <div id="boxLeft" class='boxes strt-here-box'>
+          <h2>Start Here</h2>
+          <div>
+
+          <p><form name="twsLauncher" method="post" action="."> {% csrf_token %}
+            <input class="hbutton" name='launchTws' type='hidden' value='tws'/>
+            <input class="button-tws" name='Launch' value='Launch TWS' type="submit" maxlength='8'/>
+            <!-- toggleFullScreen() script in changeRandomDivColor.js -->
+          </form></p>
+        </div><div>
+
+        </div><p></br></p>
+          <p>{{twsRunning}}</p>
+        </div>
+
+        <div id="boxLeft" class='boxes'>
+          <h3>Live Trade</h3>
+
+          <p id="box4" >
+            {% include "ib//stockWatchlist.html" %}
+          </p>
+        </div>
+
+
+        <div id="boxTop" class='boxes'>
+          <h3>Data Download</h3>
+
+          <input class="button add-list-btn" name="13Fupdate" type='submit' value='Update 13F-HR' maxlength='8'/>
+          </div>
+        <div id="boxLeft" class='boxes'>
+          <h3>Stock Analysis</h3>
+
+        </div>
+
+      </div>
+
+      <!-- ++++++++++++++++++++++++++++++++++#2++++++++++++++++++++++++++++++ -->
+      <div class="vertical-box-div">
+        <div id="boxTop" class='stock-list-box'>
+          <h2>Stock List</h2>
+          <form method='POST' action='.'> {% csrf_token %} {{ form }}
+            <input class="button add-list-btn" name="stockQuote0" type='submit' value='Add to list' maxlength='8'/>
+          </form>
+          <p id="box2" >
+            {% include "ib//stockWatchlist.html" %}
+          </p>
+        </div>
+        <div id="boxTop" class='boxes'>
+          <h2>Forex List</h2>
+          <form method='POST' action='.'> {% csrf_token %} {{ form }}
+            <input class="button add-list-btn" type='submit' name="forexQuote0" value='Add to list' maxlength='8'/>
+          </form>
+          <p id="box1">
+            {% include "ib//forexWatchlist.html" %}
+          </p>
+        </div>
+
+
+        <div id="boxRight" class='boxes'>
+          <h3>Positions</h3>
+          <p></p>
+        </div>
+
+      </div>
+      <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++? -->
+
+      <div class="vertical-box-div">
+        <div id="boxRight" class='boxes'>
+          <h2>{{month_year}}</h2>
+          <p id=box3>
+            {% include "ib//marketStatus.html" %}
+          </p>
+        </div>
+
+        <div id="boxBottom" class='boxes'>
+          <h3>PnL</h3>
+          <p>this is a div block</p>
+        </div>
+
+        <div id="boxBottom" class='boxes'>
+          <h3>Live Chart 1</h3>
+          <p>this is a div block</p>
+        </div>
+
+        <div id="boxRight" class='boxes'>
+          <h3>this is a div block3</h3>
+          <p>this is a div block</p>
+        </div>
+
+      </div>
+      <!-- ++++++++++++++++++++++++++5++++++++++++++++++++++++++++++ -->
+      <div class="vertical-box-div">
+        <div id="boxLeft" class='boxes'>
+          <h3>Institutional Data</h3>
+          <a href="http://127.0.0.1:8000/insti/"><p class="button add-list-btn">Summary</p></a>
+
+        </div>
+
+        <div id="boxRight" class='boxes'>
+          <h3>this is a div block5</h3>
+          <p>this is a div block</p>
+        </div>
+
+        <div id="boxRight" class='boxes'>
+          <h3>this is a div block6</h3>
+          <p>this is a div block</p>
+        </div>
+
+        <div id="boxRight" class='boxes'>
+          <h3>this is a div block7</h3>
+          <pthis is a div block></p>
+          </div>
+        </div>
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="vertical-box-div">
+          <div id="boxLeft" class='boxes'>
+            <h3>this is a div block4</h3>
+
+          </div>
+
+          <div id="boxRight" class='boxes'>
+            <h3>this is a div block5</h3>
+            <p>this is a div block</p>
+          </div>
+
+          <div id="boxRight" class='boxes'>
+            <h3>this is a div block6</h3>
+            <p>this is a div block</p>
+          </div>
+
+          <div id="boxBottom" class='boxes'>
+            <h3>P/L</h3>
+            <p></p>
+          </div>
+        </div>
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      </div>
+      <!-- + +++++++++++++++++++++++++++contend Div end++++++++++++++++++++++++++++++++++++++++++++++-->
+      <div class="footerDiv">
+        <footer class="footer footer-brdr"><p> Trading command</p></footer>
+        <footer class="footer"><p>Aneesh Panoli © 2017</p></footer>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/changeRandomDivColor.js' %}"></script>
+
+    <script>
+    function refresh3() {
+      $.ajax({
+        url: {% url 'LiveTradeListRefresh' %},
+        success: function(data) {
+          $('#box4').html(data);
+        }
+      });
+    };
+    $(function(){
+      refresh3();
+      var int = setInterval("refresh3()", 700); //refresh every 5 secs
+    });
+    </script>
+    <!-- ++++++++++++++++++++++++++ -->
+    <script>
+    function refresh1() {
+      $.ajax({
+        url: {% url 'stockWatchlistRefresh' %},
+        success: function(data) {
+          $('#box2').html(data);
+        }
+      });
+    };
+    $(function(){
+      refresh1();
+      var int = setInterval("refresh1()", 700); //refresh every 5 secs
+    });
+    </script>
+    <!-- ++++++++++++++++++++++++++ -->
+    <script>
+    function refresh() {
+      $.ajax({
+        url: {% url 'forexWatchlistRefresh' %},
+        success: function(data) {
+          $('#box1').html(data);
+        }
+      });
+    };
+    $(function(){
+      refresh();
+      var int = setInterval("refresh()", 800); //refresh every 5 secs
+    });
+    </script>
+    <!-- +++++++++++++++++++++++ -->
+    <script>
+    function refresh2() {
+      $.ajax({
+        url: {% url 'MarketStatusView' %},
+        success: function(data) {
+          $('#box3').html(data);
+        }
+      });
+    };
+    $(function(){
+      refresh2();
+      var int = setInterval("refresh2()", 900); //refresh every 5 secs
+    });
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,39 @@
+{% load static %}
+<link rel="stylesheet" href='{% static 'css/index.css' %}' />
+<table id="watchlistTable">
+
+{% for ticker, close in live_dict.items %}
+
+  <tr>
+    <td><form name="twsLauncher" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ forloop.counter0 }} name="livelistRow">
+      <input type="hidden" value={{ ticker }} name="liveTicker">
+      <input class="button close-button" title="Remove from Live list and STOP trading" name='stockRtButton' value='&#x23af' type="submit">
+    </form></td>
+    <td>{{ ticker }}</td>
+    <td><form name="getQuotes" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ ticker }} name="startrade">
+      <input class="button dwnld-btn" title="Start trading" value='&#x24' type="submit">
+    </form></td>
+    <td>{{ close }}</td>
+    <td><form name="getQuotes" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ ticker }} name="addtolivetrade">
+      <input title="Show chart" class="button dwnld-btn" value='&#x21AF' type="submit">
+    </form></td>
+
+  </tr>
+  {% endfor %}
+</table>
+<div>
+  <p>
+    Average True Range(12m) : {{atr}}
+  </p><p>
+    Position: {{pos}}
+  </p><p>
+    Entry price: {{cost}}
+  </p><p>
+  Trade is {{status|safe}}
+  </p><p>
+    Current P/L : {{pNl}}
+  </p>
+</div>

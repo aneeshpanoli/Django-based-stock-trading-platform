@@ -1,0 +1,88 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <link rel="icon" href='{% static 'img/favicon/favicon.ico'%'} type="image/x-icon" />
+    <link rel="shortcut icon" href='{% static 'img/favicon/favicon.ico'%}' type="image/x-icon" />
+    <meta charset="utf-8" />
+    <title>Stock Analysis</title>
+    <!-- <link rel="stylesheet" href='{% static 'css/index.css' %}' /> -->
+      <!-- <link rel="stylesheet" href='{% static 'css/tradeArrow.css' %}' /> -->
+      <link rel="stylesheet" href='{% static 'css/candleStick.css' %}' />
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+  <div id="outer">
+  <header id="mainheader"><h1> Stock Analysis - Aneesh Panoli </h1></header>
+
+ <!-- this is the back the new search -->
+<!-- <div id='message'>
+  <h2><a href='http://www.pyzyme.com'>+ New Search</a></h2>
+</div> -->
+<!-- <div id="boxresearch">
+    <form method='POST' action='.'> {% csrf_token %}
+          <div id="formp">{{ form }}
+          </div>
+
+        <div float="">
+
+        <input id="inputbutton" type='submit' value='SUBMIT' maxlength='50'/></div>
+    </form>
+
+</div> -->
+
+<div id='message'>
+
+    <h2>{{ newurl }}</h2>
+</div>
+<!-- <div id='message'>
+    <form name="gene_detail" method="post" action="http://www.pyzyme.com/testpAgHm/" target="_blank"> {% csrf_token %}
+      <button id="inputbutton" name='geneName' value='{{ geneName }}' type="submit">Click here to see the Heat Map</button>
+    </form>
+</div> -->
+
+<div id="innerhori1">
+
+
+<!---this is stock table auto refreshed----------->
+<div id="box1">
+          {% include "ib//table.html" %}
+</div>
+
+</div>
+<div id="lineChartD3" ><script>var csvpath = '{% static 'csv\\realtimeData\\' %}';</script>
+<script>var csvFname = '{{csvPathSim}}';</script>
+<script>var csvFnameD3 = '{{csvPathD3}}';</script>
+</div><div id="candle"></div>
+  <footer id="bottomfooter">Copyright pyzyme.com 2017</footer>
+</div>
+<!-- <script type="text/javascript" src="{% static 'js/buysell.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'js/techan_min.js' %}"></script>
+<!-- <script type="text/javascript" src="{% static 'js/linechartD3.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'js/tradeArrows.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'js/candleStick.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="{% static 'js/changeTableCellColor.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/refreshTableCellContent.js' %}"></script>
+
+<script>
+function refresh() {
+$.ajax({
+  url: {% url 'ibTableRefresh' %},
+  success: function(data) {
+  $('#box1').html(data);
+  }
+});
+};
+$(function(){
+    refresh();
+    var int = setInterval("refresh()", 1000); //refresh every 5 secs
+});
+ </script>
+</body>
+
+</html>

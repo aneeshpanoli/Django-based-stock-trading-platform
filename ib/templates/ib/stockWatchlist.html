@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href='{% static 'css/index.css' %}' />
+
+<table id="watchlistTable">
+
+{% for x in stock_dict %}
+  <tr>
+    <td><form name="twsLauncher" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ forloop.counter0 }} name="stockRow">
+      <input type="hidden" value={{ x.ticker }} name="stockTicker">
+      <input class="button close-button" title="Remove from list and stop download" name='stockRtButton' value='&#x23af' type="submit">
+    </form></td>
+    <td>{{ x.ticker }}</td>
+    <td><form name="getQuotes" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ x.ticker }} name="stockQuote">
+      {{ dwnld_btn|safe }}
+    </form></td>
+    <td>{{ x.close }}</td>
+    <td><form name="getQuotes" method="post" action="."> {% csrf_token %}
+      <input type="hidden" value={{ x.ticker }} name="addtolivetrade">
+      <input title="Add to live trade" class="button dwnld-btn" value='&#43' type="submit">
+    </form></td><td>{{ x.atr }}</td>
+  </tr>
+  {% endfor %}
+</table>

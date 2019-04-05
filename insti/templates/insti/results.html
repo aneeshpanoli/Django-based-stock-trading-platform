@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="{% static 'media/pyzymeIco.ico'%}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{% static 'media/pyzymeIco.ico'%}" type="image/x-icon" />
+  <meta charset="utf-8" />
+  <title>Pyzyme.com</title>
+  <link rel="stylesheet" href='{% static 'css/index.css' %}' />
+  <link rel="stylesheet" href='{% static 'css/tip_d3.css' %}' />
+  <script> var csvFolder = '{% static 'csv/StockOwnership/' %}'</script>
+  <script> var stockTickr = '{{ tickr }}' </script>
+  <script src='{% static 'js/d3_4.js' %}'></script>
+  <script src='{% static 'js/tip_d3.js' %}'></script>
+  <!-- <script src='{% static 'js/techan_min.js' %}'></script> -->
+  <!-- <script src='{% static 'scriptj/stockChart.js' %}'></script> -->
+  <script src='{% static 'js/bubble.js' %}'></script>
+  <script src='{% static 'js/bubble.js' %}'></script>
+  <!-- <script src='{% static 'js/candleStick.js' %}'></script> -->
+
+
+</head>
+
+<body background="{% static 'media/img/jarvis.jpg'%}">
+  <div id="container">
+
+    <a href="http://127.0.0.1:8000/cc"><h1> Stock Trading Command Center </h1></a>
+  </header> </div>
+
+ <!-- this is the form -->
+
+ <div id="innerhori1">
+
+ <div id="boxLeft" class='pmed-srch-box'>
+   <form method='POST' action='.'> {% csrf_token %} {{ form }}
+     <input class="hbutton" name='instiSearch' type='hidden' value='instisrch'/>
+     <input class="button add-list-btn" name="instiSearch" type='submit' value='Search Company' maxlength='8'/>
+
+          <div class="tooltip button" > ?
+  <span class="tooltiptext">Enter 'summary13F' to see the summary</span></div>
+          <!-- <div class="g-recaptcha" data-sitekey="6Le0iBUUAAAAACjXRNYBTwAkpVAzo5orIq3zrtHO"></div> -->
+    </form>
+    <form method='POST' action='.'> {% csrf_token %} {{ form1 }}
+      <input class="hbutton" name='cusipSearch' type='hidden' value='cusipsrch'/>
+      <input class="button add-list-btn" name="cusipSearch" type='submit' value='Find Cusip' maxlength='8'/>
+
+     </form>
+
+</div>
+</div>
+<div id="boxLeft" style="width:100%">
+  <p>
+    Data courtesy: Google Finance
+  </p>
+  <table>
+    {% for key, value in data.items %}
+    <tr>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+    </tr>
+    {% endfor %}
+</table>
+  <button class="button"  onclick= 'bubbleChart()' theme="testButton">Positions - Relative</button>
+  <button class="button" onclick= 'bubbleChartRedAndGreen()'>Positions - Absolute</button>
+  <button class="button" onclick= 'lineChart()'>Show Line chart</button>
+  <button class="button" onclick= 'upMove()'>Show Upmoves</button>
+  <button class="button" onclick= 'downMove()'>Show down moves</button>
+  <button class="button" onclick= 'candlestickChart()'>Chart</button>
+  <button class="button" onclick= ''>Fundamentals</button>
+</div>
+
+<div id='chart'>
+
+</div>
+
+<div >
+<h2></h2>
+</div>
+<div id="innerhori3">
+
+  <footer id="bottomfooter"><h5> <a href="http://www.pyzyme.com/disclaimer">Disclaimer</a></h5></footer>
+  <footer id="bottomfooter2"><h5>Pyzyme.com © 2017</p><p>By continuing to use this site you acknowledge that you have read and understood the disclaimer!</h5></footer>
+
+</div>
+</div>
+</body>
+</html>
