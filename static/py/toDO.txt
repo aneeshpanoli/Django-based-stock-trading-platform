@@ -1,0 +1,10 @@
+# fix the position error in views --Fixed
+# code in trade exit on position close
+# code in ATR value for the table -- fixed
+# implement stop trade/ start trade button  -- implemeted autostop after every trade
+# implement pnl, may be add the 5sec raw table to the view and use it to calculate pnl.
+# create a pnl table
+investigate buy sell skipping
+
+sue support resistance to figure the profit
+heikin ashi
